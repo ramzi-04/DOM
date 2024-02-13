@@ -1,0 +1,33 @@
+/* Add some basic styles for the app */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+input[type="text"],
+select,
+button {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.task {
+  margin-bottom: 5px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}

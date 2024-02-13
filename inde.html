@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      /* Your CSS styles for the to-do list */
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+
+    <ul id="todoList">
+      <!-- Your to-do list items will be displayed here -->
+    </ul>
+
+    <input type="text" id="newTodo" placeholder="Add a new task" />
+    <button onclick="addTodo()">Add</button>
+
+    <script>
+      // Load existing to-do list items from local storage
+      document.addEventListener("DOMContentLoaded", function () {
+        loadTodoList();
+      });
+
+      function loadTodoList() {
+        const todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+        const ul = document.getElementById("todoList");
+
+        // Clear the existing list
+        ul.innerHTML = "";
+
+        // Populate the list with stored items
+        todoList.forEach(function (todo) {
+          addTodoElement(todo);
+        });
+      }
+
+      function saveTodoList(todoList) {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+      }
+
+      function addTodo() {
+        const newTodoInput = document.getElementById("newTodo");
+        const newTodoText = newTodoInput.value.trim();
+
+        if (newTodoText !== "") {
+          const todoList = JSON.parse(localStorage.getItem("todoList")) || [];
+          todoList.push(newTodoText);
+
+          saveTodoList(todoList);
+          addTodoElement(newTodoText);
+
+          // Clear the input field
+          newTodoInput.value = "";
+        }
+      }
+
+      function addTodoElement(todoText) {
+        const ul = document.getElementById("todoList");
+        const li = document.createElement("li");
+        li.textContent = todoText;
+        ul.appendChild(li);
+      }
+    </script>
+  </body>
+</html>
